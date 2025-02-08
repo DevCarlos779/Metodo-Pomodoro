@@ -1,0 +1,105 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.full-screen {
+    width: 60%;
+    height: 70%;
+    background-color: #484D50;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 5px;
+    border: 3px solid #D0D7E1;
+    border-radius: 10px;
+}
+
+.pomodoro {
+    background-color: #D0D7E1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    
+}
+
+.lista_tarefas {
+    background-color: #D0D7E1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: start;
+    padding-top: 70px;
+    gap: 30px;
+
+}
+
+.btn {
+    padding: 16px 25px;
+    background-color: #5790AB;
+    border-radius: 5px;
+    border: none;
+    margin-right: 10px;
+    font-size: 16px;
+    color: #484D50;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.btn_selecionado {
+    background-color: #064469;
+    color: black;
+}
+
+.pomodoro h1 {
+    font-size: 80px;
+    color: #072D44;
+}
+
+.lista_tarefas h2 {
+    font-size: 40px;
+    color: #072D44;
+}
+
+.div_adicionar_tarefa {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+
+.lista_tarefas input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #5790AB;
+    width: 68%;
+}
+
+.lista_tarefas img {
+    cursor: pointer;
+    color: #064469;
+}
+
+.lista_tarefas #lista {
+    width: 60%;
+    height: 60%;
+    background-color: white;
+}

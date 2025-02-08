@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Técnica Pomodoro</title>
+</head>
+<body>
+    
+    <main class="full-screen">
+
+        <section class="pomodoro">
+            <div class="select">
+                <button class="btn btn_selecionado" id="btn_pomodoro">Pomodoro</button>
+                <button class="btn" id="btn_pausa_curta">Pausa Curta</button>
+                <button class="btn" id="btn_pausa_longa">Pausa Longa</button>
+            </div>
+
+            <h1 id="time_pomodoro">25:00</h1>
+
+            <button class="btn btn_selecionado" id="btn_comecar">Começar</button>
+        </section>
+        <section class="lista_tarefas">
+            <h2>Tarefas</h2>
+
+            <div class="div_adicionar_tarefa">
+                <input type="text" id="input_tarefa">
+                <img id="btn_adicionar" src="/img/botao-adicionar.png" alt="icone_adicionar">
+            </div>
+
+            <div id="lista">
+
+            </div>
+        </main>
+
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
