@@ -15,7 +15,7 @@ body {
 
 .full-screen {
     width: 1200px;
-    height: 70%;
+    height: 600px;
     background-color: #484D50;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -48,6 +48,14 @@ body {
     padding-top: 70px;
     gap: 30px;
 
+}
+
+.select {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn {
@@ -102,4 +110,11 @@ body {
     width: 60%;
     height: 60%;
     background-color: white;
+}
+
+@media (max-width: 1400px) {
+    .full-screen {
+        width: 1000px;
+        
+    }
 }
