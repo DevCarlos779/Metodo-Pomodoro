@@ -115,7 +115,6 @@ body {
 @media (max-width: 1400px) {
     .full-screen {
         width: 1000px;
-        gap: 200px;
         
     }
 }
