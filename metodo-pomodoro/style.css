@@ -14,7 +14,7 @@ body {
 }
 
 .full-screen {
-    width: 60%;
+    width: 1200px;
     height: 70%;
     background-color: #484D50;
     display: grid;
