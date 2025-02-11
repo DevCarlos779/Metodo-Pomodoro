@@ -122,7 +122,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 15px;
     
 }
 
@@ -134,8 +134,6 @@ body {
 @media (max-width: 1400px) {
     .full-screen {
         width: 1000px;
-        gap: 200px;
-        
     }
 }
 
@@ -178,6 +176,10 @@ body {
 }
 
 @media (max-width: 810px) {
+
+    body {
+        height: 160vh;
+    }
 
     .full-screen {
         width: 500px;
