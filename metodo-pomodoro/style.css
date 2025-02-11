@@ -111,6 +111,24 @@ body {
     width: 60%;
     height: 60%;
     background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-flow: column wrap;
+}
+
+.item-lista {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    
+}
+
+.text-lista {
+    font-size: 18px;
+    font-weight: bolder;
 }
 
 @media (max-width: 1400px) {

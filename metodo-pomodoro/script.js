@@ -51,13 +51,15 @@ const AdicionarTarefa = () => {
         i++;
 
         const div = document.createElement("div");
-        const btn_remover = document.createElement("button");
+        const icon_remover = document.createElement("img");
 
+        div.setAttribute("class", "item-lista");
         div.setAttribute("data-nome", t);
-        div.innerHTML = `<p>${i}. ${t}</p>`;
+        div.innerHTML = `<p class = 'text-lista'>${i}. ${t}</p>`;
 
-        btn_remover.innerHTML = "Remover";
-        btn_remover.addEventListener("click", (evt) => {
+        icon_remover.setAttribute("src", "img/lixeira-de-reciclagem.png");
+
+        icon_remover.addEventListener("click", (evt) => {
             let quemQueroRemover = evt.target.parentNode.dataset.nome;
             
 
@@ -67,7 +69,7 @@ const AdicionarTarefa = () => {
 
         })
 
-        div.appendChild(btn_remover);
+        div.appendChild(icon_remover);
         lista.appendChild(div);
 
     })
