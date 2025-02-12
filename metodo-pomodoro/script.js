@@ -1,21 +1,21 @@
-const btn_pomodoro = document.getElementById("btn_pomodoro");
-const btn_pausa_curta = document.getElementById("btn_pausa_curta");
-const btn_pausa_longa = document.getElementById("btn_pausa_longa");
-const btn_comecar = document.getElementById("btn_comecar");
+const btn_pomodoro = document.getElementById("btn_pomodoro"); //botao que seta o time para 25min
+const btn_pausa_curta = document.getElementById("btn_pausa_curta"); //botao que seta o time para 5min
+const btn_pausa_longa = document.getElementById("btn_pausa_longa"); //botao que seta o time para 30min
+const btn_comecar = document.getElementById("btn_comecar"); //botao que começa a contar o tempo
 
-const time_pomodoro = document.getElementById("time_pomodoro");
+const time_pomodoro = document.getElementById("time_pomodoro"); //H1 que exibe o Tempo na Tela
 
-const input_tarefa = document.getElementById("input_tarefa");
-const btn_adicionar = document.getElementById("btn_adicionar");
+const input_tarefa = document.getElementById("input_tarefa"); //Input que recebe a Tarefa
+const btn_adicionar = document.getElementById("btn_adicionar"); //botao que adiciona a Tarefa
 
-const lista = document.getElementById("lista");
+const lista = document.getElementById("lista"); //Área da Lista, onde serão mostradas as Tarefas
 
-let time_atual = null
-let timer = 1500000
-let horario_pomodoro = null;
-let minutos_pomodoro = null;
-let segundos_pomodoro = null;
-let pode_cronometrar = true;
+let time_atual = null //variavel do tempo atual, que só será atribuido valor quando começar a contagem do tempo
+let timer = 1500000 //valor inical do tempo em Milissengundos (25min)
+let horario_pomodoro = null; //variavel que armazena o valor do tempo colocado ao inicar a contagem (em milissegundos), que só será atribuido valor quando começar a contagem do tempo
+let minutos_pomodoro = null; //variavel que armazena o tempo em minutos, que só será atribuido valor quando começar a contagem do tempo;
+let segundos_pomodoro = null; //variavel que armazena o tempo em segundos, que só será atribuido valor quando começar a contagem do tempo;
+let pode_cronometrar = true; //variavel booleana que retorna se ao clicar no botão começar, realmente pode começar a cronomertrar
 
 // const MudarBotaoComecar = () => {
 //     btn_comecar.innerHTML = "Pausar";
@@ -26,8 +26,10 @@ let pode_cronometrar = true;
 //     })
 // }
 
-let lista_tarefas = [];
+let lista_tarefas = []; //Array que contem todas as tarefas, Começa Vazio!
 
+
+//Função que remove a class btn_selecionado de todos os Botões
 const TirarSelecao = () => {
     const btn_selecionado = [...document.querySelectorAll(".btn_selecionado")];
     btn_selecionado.map((btn) => {
@@ -35,53 +37,12 @@ const TirarSelecao = () => {
     })
 }
 
-const RemoverTarefa = (quem) => {
-    lista_tarefas = lista_tarefas.filter((el) => {
-        return el != quem;
-    })
 
-    
-}
-
-const AdicionarTarefa = () => {
-    
-    console.log(lista_tarefas);
-    lista.innerHTML = "";
-    lista_tarefas.forEach((t,i) => {
-        i++;
-
-        const div = document.createElement("div");
-        const icon_remover = document.createElement("img");
-
-        div.setAttribute("class", "item-lista");
-        div.setAttribute("data-nome", t);
-        div.innerHTML = `<p class = 'text-lista'>${i}. ${t}</p>`;
-
-        icon_remover.setAttribute("src", "img/lixeira-de-reciclagem.png");
-
-        icon_remover.addEventListener("click", (evt) => {
-            let quemQueroRemover = evt.target.parentNode.dataset.nome;
-            
-
-            RemoverTarefa(quemQueroRemover);
-
-            AdicionarTarefa();
-
-        })
-
-        div.appendChild(icon_remover);
-        lista.appendChild(div);
-
-    })
-
-    input_tarefa.value = "";
-}
-
-
+//Evento Configura o tempo para 25min e a confirmação de contagem de tempo quando clica no botão começar
 btn_pomodoro.addEventListener("click", (evt) => {
 
-    btn_comecar.innerHTML = "Começar";
-    btn_comecar.style.backgroundColor = "#5790AB";
+    // btn_comecar.innerHTML = "Começar";
+    // btn_comecar.style.backgroundColor = "#5790AB";
     pode_cronometrar = false;
     timer = 1500000;
     horario_pomodoro = new Date(timer)
@@ -94,10 +55,11 @@ btn_pomodoro.addEventListener("click", (evt) => {
     
 })
 
+//Evento Configura o tempo para 5min e a confirmação de contagem de tempo quando clica no botão começar
 btn_pausa_curta.addEventListener("click", (evt) => {
 
-    btn_comecar.innerHTML = "Começar";
-    btn_comecar.style.backgroundColor = "#5790AB";
+    // btn_comecar.innerHTML = "Começar";
+    // btn_comecar.style.backgroundColor = "#5790AB";
     pode_cronometrar = false;
     timer = 300000;
     horario_pomodoro = new Date(timer)
@@ -108,11 +70,11 @@ btn_pausa_curta.addEventListener("click", (evt) => {
     evt.target.classList.toggle("btn_selecionado");
 })
 
-
+//Evento Configura o tempo para 30min e a confirmação de contagem de tempo quando clica no botão começar
 btn_pausa_longa.addEventListener("click", (evt) => {
 
-    btn_comecar.innerHTML = "Começar";
-    btn_comecar.style.backgroundColor = "#5790AB";
+    // btn_comecar.innerHTML = "Começar";
+    // btn_comecar.style.backgroundColor = "#5790AB";
     pode_cronometrar = false;
     timer = 1800000;
     horario_pomodoro = new Date(timer)
@@ -123,7 +85,7 @@ btn_pausa_longa.addEventListener("click", (evt) => {
     evt.target.classList.toggle("btn_selecionado");
 })
 
-
+//Evento que começa a contagem do tempo quando clica no botão começar
 btn_comecar.addEventListener("click", (evt) => {
     pode_cronometrar = true
     time_Inicial = Date.now();
@@ -166,11 +128,56 @@ btn_comecar.addEventListener("click", (evt) => {
     
 })
 
-
+//Evento que ao clicar no icone de adicionar tarefa, adiciona uma nova tarefa ao array de tarefas
 btn_adicionar.addEventListener("click", (evt) => {
     lista_tarefas.push(input_tarefa.value);
     AdicionarTarefa();
 })
+
+
+//Função que remove uma tarefa Específica
+const RemoverTarefa = (quem) => {
+    lista_tarefas = lista_tarefas.filter((el) => {
+        return el != quem;
+    })
+
+    
+}
+
+//Função que Adiciona as tarefas do array na tela
+const AdicionarTarefa = () => {
+    
+    console.log(lista_tarefas);
+    lista.innerHTML = "";
+    lista_tarefas.forEach((t,i) => {
+        i++;
+
+        const div = document.createElement("div");
+        const icon_remover = document.createElement("img");
+
+        div.setAttribute("class", "item-lista");
+        div.setAttribute("data-nome", t);
+        div.innerHTML = `<p class = 'text-lista'>${i}. ${t}</p>`;
+
+        icon_remover.setAttribute("src", "img/lixeira-de-reciclagem.png");
+
+        icon_remover.addEventListener("click", (evt) => {
+            let quemQueroRemover = evt.target.parentNode.dataset.nome;
+            
+
+            RemoverTarefa(quemQueroRemover);
+
+            AdicionarTarefa();
+
+        })
+
+        div.appendChild(icon_remover);
+        lista.appendChild(div);
+
+    })
+
+    input_tarefa.value = "";
+}
 
 
 
