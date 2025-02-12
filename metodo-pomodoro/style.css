@@ -76,6 +76,19 @@ body {
     color: black;
 }
 
+.btn_pausar {
+    padding: 16px 25px;
+    background-color: #ad2c0c;
+    border-radius: 5px;
+    border: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 16px;
+    color: #484D50;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
 .pomodoro h1 {
     font-size: 80px;
     color: #072D44;

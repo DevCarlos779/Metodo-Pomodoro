@@ -8,6 +8,7 @@ const time_pomodoro = document.getElementById("time_pomodoro"); //H1 que exibe o
 const input_tarefa = document.getElementById("input_tarefa"); //Input que recebe a Tarefa
 const btn_adicionar = document.getElementById("btn_adicionar"); //botao que adiciona a Tarefa
 
+const div_btns_tempo = document.getElementById("div_btns_tempo"); //Área da Lista, onde serão mostradas as Tarefas
 const lista = document.getElementById("lista"); //Área da Lista, onde serão mostradas as Tarefas
 
 let time_atual = null //variavel do tempo atual, que só será atribuido valor quando começar a contagem do tempo
@@ -89,11 +90,29 @@ btn_pausa_longa.addEventListener("click", (evt) => {
 btn_comecar.addEventListener("click", (evt) => {
     pode_cronometrar = true
     time_Inicial = Date.now();
+    const btn_pausar = document.createElement("btn");
+            
     let cronometro = () => {
         if (pode_cronometrar == true) {
             time_atual = Date.now();
             let horario_final = time_Inicial + timer;
             let timer_cronometro = horario_final - time_atual;
+
+
+            btn_pausar.setAttribute("class", "btn_pausar");
+            btn_pausar.innerHTML = "Pausar";
+
+            btn_pausar.addEventListener("click", (evt) => {
+                
+            
+
+
+            });
+            
+
+            div_btns_tempo.appendChild(btn_pausar);
+            
+        
             if (timer_cronometro > 10) {
                 let timer_atual_cronometro = new Date(timer_cronometro);
                 minutos_pomodoro = timer_atual_cronometro.getMinutes() < 10 ? "0" + timer_atual_cronometro.getMinutes() : timer_atual_cronometro.getMinutes();
@@ -147,7 +166,6 @@ const RemoverTarefa = (quem) => {
 //Função que Adiciona as tarefas do array na tela
 const AdicionarTarefa = () => {
     
-    console.log(lista_tarefas);
     lista.innerHTML = "";
     lista_tarefas.forEach((t,i) => {
         i++;
