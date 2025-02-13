@@ -28,29 +28,7 @@ let cronometrando = false;
 //     })
 // }
 
-const btn_pausar = document.createElement("btn");
 
-const configBtnPausar = () => {
-    if(cronometrando == true) {
-    
-        btn_pausar.setAttribute("class", "btn_pausar");
-                btn_pausar.innerHTML = "Pausar";
-    
-                btn_pausar.addEventListener("click", (evt) => {
-                    
-                
-    
-        });
-                    
-    
-        div_btns_tempo.appendChild(btn_pausar);
-    } else {
-        btn_pausar.classList.remove("btn_pausar");
-        btn_pausar.innerHTML = "";
-    }
-}
-
-let verificarSeContando = setInterval(configBtnPausar, 50);
 
 let lista_tarefas = []; //Array que contem todas as tarefas, Começa Vazio!
 
@@ -173,9 +151,38 @@ btn_comecar.addEventListener("click", (evt) => {
     //diminuir o tempo é uma solução temporaria!
     let contar = setInterval(cronometro, 50);
 
+    btn_pausar.addEventListener("click", (evt) => {
+
+        clearInterval(contar);
+        console.log("aaaaaaaa");
+    
+    });
+
     
     
 })
+
+const btn_pausar = document.createElement("btn");
+
+const configBtnPausar = () => {
+    if(cronometrando == true) {
+    
+        btn_pausar.setAttribute("class", "btn_pausar");
+        btn_pausar.innerHTML = "Pausar";
+    
+        
+                    
+    
+        div_btns_tempo.appendChild(btn_pausar);
+    } else {
+        btn_pausar.classList.remove("btn_pausar");
+        btn_pausar.innerHTML = "";
+    }
+}
+
+
+let verificarSeContando = setInterval(configBtnPausar, 50);
+
 
 
 
