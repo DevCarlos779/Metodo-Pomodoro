@@ -18,15 +18,7 @@ let minutos_pomodoro = null; //variavel que armazena o tempo em minutos, que só
 let segundos_pomodoro = null; //variavel que armazena o tempo em segundos, que só será atribuido valor quando começar a contagem do tempo;
 let pode_cronometrar = true; //variavel booleana que retorna se ao clicar no botão começar, realmente pode começar a cronomertrar
 let cronometrando = false;
-
-// const MudarBotaoComecar = () => {
-//     btn_comecar.innerHTML = "Pausar";
-//     btn_comecar.style.backgroundColor = "red";
-
-//     btn_comecar.addEventListener("click", (evt) => {
-//         pode_cronometrar = false;
-//     })
-// }
+let time_quando_pausou = null;
 
 
 
@@ -41,6 +33,22 @@ const TirarSelecao = () => {
     })
 }
 
+const btn_pausar = document.createElement("btn");
+const btn_retomar = document.createElement("btn");
+let ConfigBtnPausar = () => {
+    if(cronometrando == true) {
+        
+        btn_pausar.setAttribute("class", "btn_pausar");
+        btn_pausar.innerHTML = "Pausar";
+        div_btns_tempo.appendChild(btn_pausar);
+    } else {
+        btn_pausar.classList.remove("btn_pausar");
+        btn_pausar.innerHTML = "";
+        btn_retomar.classList.remove("btn_retomar");
+        btn_retomar.innerHTML = "";
+    }
+}
+
 
 //Evento Configura o tempo para 25min e a confirmação de contagem de tempo quando clica no botão começar
 btn_pomodoro.addEventListener("click", (evt) => {
@@ -48,6 +56,7 @@ btn_pomodoro.addEventListener("click", (evt) => {
     // btn_comecar.innerHTML = "Começar";
     // btn_comecar.style.backgroundColor = "#5790AB";
     cronometrando = false;
+    ConfigBtnPausar();
     pode_cronometrar = false;
     timer = 1500000;
     horario_pomodoro = new Date(timer)
@@ -66,6 +75,7 @@ btn_pausa_curta.addEventListener("click", (evt) => {
     // btn_comecar.innerHTML = "Começar";
     // btn_comecar.style.backgroundColor = "#5790AB";
     cronometrando = false;
+    ConfigBtnPausar();
     pode_cronometrar = false;
     timer = 300000;
     horario_pomodoro = new Date(timer)
@@ -82,6 +92,7 @@ btn_pausa_longa.addEventListener("click", (evt) => {
     // btn_comecar.innerHTML = "Começar";
     // btn_comecar.style.backgroundColor = "#5790AB";
     cronometrando = false;
+    ConfigBtnPausar();
     pode_cronometrar = false;
     timer = 1800000;
     horario_pomodoro = new Date(timer)
@@ -95,31 +106,34 @@ btn_pausa_longa.addEventListener("click", (evt) => {
 
 //Evento que começa a contagem do tempo quando clica no botão começar
 btn_comecar.addEventListener("click", (evt) => {
+    
+
     pode_cronometrar = true
     time_Inicial = Date.now();
+    cronometrando = true;
+
+    ConfigBtnPausar();
+
+    let acumulator = [0];
+    let time_pausa_acumulado = acumulator.reduce((valorAcumulado, elementoAtual) => {
+        return valorAcumulado + elementoAtual;
+    }, 0);
+
     
             
     let cronometro = () => {
         if (pode_cronometrar == true) {
             cronometrando = true;
             time_atual = Date.now();
+            let time_pausa_acumulado = acumulator.reduce((valorAcumulado, elementoAtual) => {
+                return valorAcumulado + elementoAtual;
+              }, 0);
+              
+            
             let horario_final = time_Inicial + timer;
-            let timer_cronometro = horario_final - time_atual;
 
-            if(cronometrando == true) {
-    
-                btn_pausar.setAttribute("class", "btn_pausar");
-                        btn_pausar.innerHTML = "Pausar";
-            
-                        btn_pausar.addEventListener("click", (evt) => {
+            let timer_cronometro = horario_final + time_pausa_acumulado - time_atual; //10 - 3 = 7 //10 + (6 -3) -6 = 7 //10 - 8 = 6
                             
-                        
-            
-                });
-                            
-            
-                div_btns_tempo.appendChild(btn_pausar);
-            }
         
             if (timer_cronometro > 10) {
                 let timer_atual_cronometro = new Date(timer_cronometro);
@@ -151,37 +165,66 @@ btn_comecar.addEventListener("click", (evt) => {
     //diminuir o tempo é uma solução temporaria!
     let contar = setInterval(cronometro, 50);
 
-    btn_pausar.addEventListener("click", (evt) => {
+    
+    
+    // btn_pausar.setAttribute("class", "btn_pausar");
+    // btn_pausar.innerHTML = "Pausar";
+    // div_btns_tempo.appendChild(btn_pausar);
 
+    btn_pausar.addEventListener("click", (evt) => {
+        cronometrando = false;
         clearInterval(contar);
-        console.log("aaaaaaaa");
+        time_quando_pausou = Date.now();
+        
+        
+
+        btn_pausar.classList.remove("btn_pausar");
+        btn_pausar.innerHTML = "";
+
+        btn_retomar.setAttribute("class", "btn_retomar");
+        btn_retomar.innerHTML = "Retomar";
+        console.log("aaaaaa");
+
+        
+                    
+    
+        div_btns_tempo.appendChild(btn_retomar);
+        
     
     });
 
-    
-    
-})
+    btn_retomar.addEventListener("click", (evt) => {
+            
+        time_pausa = Date.now() - time_quando_pausou;
+        acumulator.push(time_pausa);
+        cronometrando = true;
+        contar = setInterval(cronometro, 50);
 
-const btn_pausar = document.createElement("btn");
+        btn_retomar.classList.remove("btn_retomar");
+        btn_retomar.innerHTML = "";
 
-const configBtnPausar = () => {
-    if(cronometrando == true) {
-    
         btn_pausar.setAttribute("class", "btn_pausar");
         btn_pausar.innerHTML = "Pausar";
+
     
         
                     
     
         div_btns_tempo.appendChild(btn_pausar);
-    } else {
-        btn_pausar.classList.remove("btn_pausar");
-        btn_pausar.innerHTML = "";
-    }
-}
+        
+    
+    });
+
+    
+
+    
+
+    
+    
+})
 
 
-let verificarSeContando = setInterval(configBtnPausar, 50);
+
 
 
 
