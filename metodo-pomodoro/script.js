@@ -17,6 +17,7 @@ let horario_pomodoro = null; //variavel que armazena o valor do tempo colocado a
 let minutos_pomodoro = null; //variavel que armazena o tempo em minutos, que só será atribuido valor quando começar a contagem do tempo;
 let segundos_pomodoro = null; //variavel que armazena o tempo em segundos, que só será atribuido valor quando começar a contagem do tempo;
 let pode_cronometrar = true; //variavel booleana que retorna se ao clicar no botão começar, realmente pode começar a cronomertrar
+let cronometrando = false;
 
 // const MudarBotaoComecar = () => {
 //     btn_comecar.innerHTML = "Pausar";
@@ -26,6 +27,30 @@ let pode_cronometrar = true; //variavel booleana que retorna se ao clicar no bot
 //         pode_cronometrar = false;
 //     })
 // }
+
+const btn_pausar = document.createElement("btn");
+
+const configBtnPausar = () => {
+    if(cronometrando == true) {
+    
+        btn_pausar.setAttribute("class", "btn_pausar");
+                btn_pausar.innerHTML = "Pausar";
+    
+                btn_pausar.addEventListener("click", (evt) => {
+                    
+                
+    
+        });
+                    
+    
+        div_btns_tempo.appendChild(btn_pausar);
+    } else {
+        btn_pausar.classList.remove("btn_pausar");
+        btn_pausar.innerHTML = "";
+    }
+}
+
+let verificarSeContando = setInterval(configBtnPausar, 50);
 
 let lista_tarefas = []; //Array que contem todas as tarefas, Começa Vazio!
 
@@ -44,6 +69,7 @@ btn_pomodoro.addEventListener("click", (evt) => {
 
     // btn_comecar.innerHTML = "Começar";
     // btn_comecar.style.backgroundColor = "#5790AB";
+    cronometrando = false;
     pode_cronometrar = false;
     timer = 1500000;
     horario_pomodoro = new Date(timer)
@@ -61,6 +87,7 @@ btn_pausa_curta.addEventListener("click", (evt) => {
 
     // btn_comecar.innerHTML = "Começar";
     // btn_comecar.style.backgroundColor = "#5790AB";
+    cronometrando = false;
     pode_cronometrar = false;
     timer = 300000;
     horario_pomodoro = new Date(timer)
@@ -76,6 +103,7 @@ btn_pausa_longa.addEventListener("click", (evt) => {
 
     // btn_comecar.innerHTML = "Começar";
     // btn_comecar.style.backgroundColor = "#5790AB";
+    cronometrando = false;
     pode_cronometrar = false;
     timer = 1800000;
     horario_pomodoro = new Date(timer)
@@ -86,32 +114,34 @@ btn_pausa_longa.addEventListener("click", (evt) => {
     evt.target.classList.toggle("btn_selecionado");
 })
 
+
 //Evento que começa a contagem do tempo quando clica no botão começar
 btn_comecar.addEventListener("click", (evt) => {
     pode_cronometrar = true
     time_Inicial = Date.now();
-    const btn_pausar = document.createElement("btn");
+    
             
     let cronometro = () => {
         if (pode_cronometrar == true) {
+            cronometrando = true;
             time_atual = Date.now();
             let horario_final = time_Inicial + timer;
             let timer_cronometro = horario_final - time_atual;
 
-
-            btn_pausar.setAttribute("class", "btn_pausar");
-            btn_pausar.innerHTML = "Pausar";
-
-            btn_pausar.addEventListener("click", (evt) => {
-                
+            if(cronometrando == true) {
+    
+                btn_pausar.setAttribute("class", "btn_pausar");
+                        btn_pausar.innerHTML = "Pausar";
             
-
-
-            });
+                        btn_pausar.addEventListener("click", (evt) => {
+                            
+                        
             
-
-            div_btns_tempo.appendChild(btn_pausar);
+                });
+                            
             
+                div_btns_tempo.appendChild(btn_pausar);
+            }
         
             if (timer_cronometro > 10) {
                 let timer_atual_cronometro = new Date(timer_cronometro);
@@ -146,6 +176,8 @@ btn_comecar.addEventListener("click", (evt) => {
     
     
 })
+
+
 
 //Evento que ao clicar no icone de adicionar tarefa, adiciona uma nova tarefa ao array de tarefas
 btn_adicionar.addEventListener("click", (evt) => {
