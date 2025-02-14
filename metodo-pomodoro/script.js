@@ -29,23 +29,47 @@ let lista_tarefas = []; //Array que contem todas as tarefas, Começa Vazio!
 const TirarSelecao = () => {
     const btn_selecionado = [...document.querySelectorAll(".btn_selecionado")];
     btn_selecionado.map((btn) => {
-        btn.classList.remove("btn_selecionado");
+        if(btn.id != "btn_comecar") {
+            btn.classList.remove("btn_selecionado");
+        }
+        
     })
 }
 
 const btn_pausar = document.createElement("btn");
 const btn_retomar = document.createElement("btn");
+const btn_recomecar = document.createElement("btn");
 let ConfigBtnPausar = () => {
     if(cronometrando == true) {
         
+        btn_comecar.classList.remove("btn");
+        btn_comecar.classList.remove("btn_selecionado");
+        btn_comecar.setAttribute("class", "btn_oculto");
+        btn_comecar.innerHTML = "";
+
         btn_pausar.setAttribute("class", "btn_pausar");
         btn_pausar.innerHTML = "Pausar";
         div_btns_tempo.appendChild(btn_pausar);
+
+        btn_recomecar.setAttribute("class", "btn_retomar");
+        btn_recomecar.innerHTML = "Recomeçar";
+        div_btns_tempo.appendChild(btn_recomecar);
+
+        
     } else {
+
+        btn_comecar.classList.remove("btn_oculto");
+        btn_comecar.setAttribute("class", "btn btn_selecionado");  
+        btn_comecar.innerHTML = "Começar";
+        
+
         btn_pausar.classList.remove("btn_pausar");
         btn_pausar.innerHTML = "";
         btn_retomar.classList.remove("btn_retomar");
         btn_retomar.innerHTML = "";
+        btn_recomecar.classList.remove("btn_retomar");
+        btn_recomecar.innerHTML = "";
+        
     }
 }
 
@@ -211,6 +235,50 @@ btn_comecar.addEventListener("click", (evt) => {
                     
     
         div_btns_tempo.appendChild(btn_pausar);
+        
+    
+    });
+
+    btn_recomecar.addEventListener("click", (evt) => {
+        
+        pode_cronometrar = false;
+        cronometrando = false;
+
+        
+        time_Inicial = Date.now();
+        horario_final = time_Inicial + timer;
+        time_atual = Date.now();
+        timer_cronometro = horario_final + time_pausa_acumulado - time_atual;
+
+        if (timer_cronometro > 10) {
+            let timer_atual_cronometro = new Date(timer_cronometro);
+            minutos_pomodoro = timer_atual_cronometro.getMinutes() < 10 ? "0" + timer_atual_cronometro.getMinutes() : timer_atual_cronometro.getMinutes();
+            segundos_pomodoro = timer_atual_cronometro.getSeconds() < 10 ? "0" + timer_atual_cronometro.getSeconds() : timer_atual_cronometro.getSeconds();
+            time_pomodoro.innerHTML = minutos_pomodoro + ":" + segundos_pomodoro;
+
+            // MudarBotaoComecar();
+
+        }
+
+        btn_recomecar.classList.remove("btn_retomar");
+        btn_recomecar.innerHTML = "";
+
+        btn_pausar.classList.remove("btn_pausar");
+        btn_pausar.innerHTML = "";
+
+        btn_retomar.classList.remove("btn_retomar");
+        btn_retomar.innerHTML = "";
+
+        btn_comecar.classList.remove("btn_oculto");
+        btn_comecar.setAttribute("class", "btn btn_selecionado");
+        btn_comecar.innerHTML = "Começar";
+
+
+    
+        
+                    
+    
+        div_btns_tempo.appendChild(btn_comecar);
         
     
     });

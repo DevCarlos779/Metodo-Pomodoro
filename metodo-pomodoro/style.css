@@ -102,6 +102,14 @@ body {
     cursor: pointer;
 }
 
+.btn_oculto {
+    width: 0;
+    height: 0;
+    color: transparent;
+    background-color: transparent;
+    border: none;
+}
+
 .pomodoro h1 {
     font-size: 80px;
     color: #072D44;
