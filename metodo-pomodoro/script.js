@@ -36,9 +36,9 @@ const TirarSelecao = () => {
     })
 }
 
-const btn_pausar = document.createElement("btn");
-const btn_retomar = document.createElement("btn");
-const btn_recomecar = document.createElement("btn");
+const btn_pausar = document.createElement("button");
+const btn_retomar = document.createElement("button");
+const btn_recomecar = document.createElement("button");
 let ConfigBtnPausar = () => {
     if(cronometrando == true) {
         
@@ -48,10 +48,12 @@ let ConfigBtnPausar = () => {
         btn_comecar.innerHTML = "";
 
         btn_pausar.setAttribute("class", "btn_pausar");
+        btn_pausar.classList.remove("btn_oculto");
         btn_pausar.innerHTML = "Pausar";
         div_btns_tempo.appendChild(btn_pausar);
 
         btn_recomecar.setAttribute("class", "btn_retomar");
+        btn_recomecar.classList.remove("btn_oculto");
         btn_recomecar.innerHTML = "Recomeçar";
         div_btns_tempo.appendChild(btn_recomecar);
 
@@ -64,10 +66,15 @@ let ConfigBtnPausar = () => {
         
 
         btn_pausar.classList.remove("btn_pausar");
+        btn_pausar.setAttribute("class", "btn_oculto");
         btn_pausar.innerHTML = "";
+
         btn_retomar.classList.remove("btn_retomar");
+        btn_retomar.setAttribute("class", "btn_oculto");
         btn_retomar.innerHTML = "";
+
         btn_recomecar.classList.remove("btn_retomar");
+        btn_recomecar.setAttribute("class", "btn_oculto");
         btn_recomecar.innerHTML = "";
         
     }
@@ -159,7 +166,7 @@ btn_comecar.addEventListener("click", (evt) => {
             let timer_cronometro = horario_final + time_pausa_acumulado - time_atual; //10 - 3 = 7 //10 + (6 -3) -6 = 7 //10 - 8 = 6
                             
         
-            if (timer_cronometro > 10) {
+            if (timer_cronometro > 1) {
                 let timer_atual_cronometro = new Date(timer_cronometro);
                 minutos_pomodoro = timer_atual_cronometro.getMinutes() < 10 ? "0" + timer_atual_cronometro.getMinutes() : timer_atual_cronometro.getMinutes();
                 segundos_pomodoro = timer_atual_cronometro.getSeconds() < 10 ? "0" + timer_atual_cronometro.getSeconds() : timer_atual_cronometro.getSeconds();
@@ -170,14 +177,14 @@ btn_comecar.addEventListener("click", (evt) => {
             } else {
                 pode_cronometrar = false;
 
-                // time_Inicial = Date.now();
-                // time_atual = Date.now();
-                // horario_final = time_Inicial + timer;
-                // timer_cronometro = horario_final - time_atual;
-                // timer_atual_cronometro = new Date(timer_cronometro);
-                // minutos_pomodoro = timer_atual_cronometro.getMinutes() < 10 ? "0" + timer_atual_cronometro.getMinutes() : timer_atual_cronometro.getMinutes();
-                // segundos_pomodoro = timer_atual_cronometro.getSeconds() < 10 ? "0" + timer_atual_cronometro.getSeconds() : timer_atual_cronometro.getSeconds();
-                // time_pomodoro.innerHTML = minutos_pomodoro + ":" + segundos_pomodoro;
+                btn_pausar.classList.remove("btn_pausar");
+                btn_pausar.setAttribute("class", "btn_oculto");
+                btn_pausar.innerHTML = "";
+
+                btn_retomar.classList.remove("btn_retomar");
+                btn_retomar.setAttribute("class", "btn_oculto");
+                btn_retomar.innerHTML = "";
+                
             }
 
            
@@ -203,13 +210,12 @@ btn_comecar.addEventListener("click", (evt) => {
         
 
         btn_pausar.classList.remove("btn_pausar");
+        btn_pausar.setAttribute("class", "btn_oculto");
         btn_pausar.innerHTML = "";
 
+        btn_retomar.classList.remove("btn_oculto");
         btn_retomar.setAttribute("class", "btn_retomar");
-        btn_retomar.innerHTML = "Retomar";
-        console.log("aaaaaa");
-
-        
+        btn_retomar.innerHTML = "Retomar";   
                     
     
         div_btns_tempo.appendChild(btn_retomar);
@@ -223,10 +229,12 @@ btn_comecar.addEventListener("click", (evt) => {
         acumulator.push(time_pausa);
         cronometrando = true;
         contar = setInterval(cronometro, 50);
-
+        
         btn_retomar.classList.remove("btn_retomar");
+        btn_retomar.setAttribute("class", "btn_oculto");
         btn_retomar.innerHTML = "";
 
+        btn_pausar .classList.remove("btn_oculto");
         btn_pausar.setAttribute("class", "btn_pausar");
         btn_pausar.innerHTML = "Pausar";
 
@@ -261,12 +269,15 @@ btn_comecar.addEventListener("click", (evt) => {
         }
 
         btn_recomecar.classList.remove("btn_retomar");
+        btn_recomecar.setAttribute("class", "btn_oculto");
         btn_recomecar.innerHTML = "";
 
         btn_pausar.classList.remove("btn_pausar");
+        btn_pausar.setAttribute("class", "btn_oculto");
         btn_pausar.innerHTML = "";
 
         btn_retomar.classList.remove("btn_retomar");
+        btn_retomar.setAttribute("class", "btn_oculto");
         btn_retomar.innerHTML = "";
 
         btn_comecar.classList.remove("btn_oculto");
