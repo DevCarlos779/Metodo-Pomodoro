@@ -17,8 +17,8 @@ let horario_pomodoro = null; //variavel que armazena o valor do tempo colocado a
 let minutos_pomodoro = null; //variavel que armazena o tempo em minutos, que só será atribuido valor quando começar a contagem do tempo;
 let segundos_pomodoro = null; //variavel que armazena o tempo em segundos, que só será atribuido valor quando começar a contagem do tempo;
 let pode_cronometrar = true; //variavel booleana que retorna se ao clicar no botão começar, realmente pode começar a cronomertrar
-let cronometrando = false;
-let time_quando_pausou = null;
+let cronometrando = false; // variavel booleana que retorna se o tempo esta rodando ou parado
+let time_quando_pausou = null; // variavel que retorna o tempo atual em milissegundo quando o botao pausar foi clicado
 
 
 
