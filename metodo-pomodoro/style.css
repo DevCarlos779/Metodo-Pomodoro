@@ -11,22 +11,23 @@ body {
     align-items: center;
     width: 100%;
     height: 100vh;
+    background-color: #E5E5E5;
 }
 
 .full-screen {
     width: 1200px;
     height: 600px;
-    background-color: #484D50;
+    background-color: #071739;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 5px;
-    border: 3px solid #D0D7E1;
+    border: 3px solid #e2e4e7;
     border-radius: 10px;
 }
 
 .pomodoro {
-    background-color: #D0D7E1;
+    background-color: #CDD5DB;
     width: 100%;
     height: 100%;
     display: flex;
@@ -38,7 +39,7 @@ body {
 }
 
 .lista_tarefas {
-    background-color: #D0D7E1;
+    background-color: #CDD5DB;
     width: 100%;
     height: 100%;
     display: flex;
@@ -60,20 +61,20 @@ body {
 
 .btn {
     padding: 16px 25px;
-    background-color: #5790AB;
+    background-color: #4B6382;
     border-radius: 5px;
     border: none;
     margin-left: 5px;
     margin-right: 5px;
     font-size: 16px;
-    color: #484D50;
+    color: #8aabc4;
     font-weight: bolder;
     cursor: pointer;
 }
 
 .btn_selecionado {
-    background-color: #064469;
-    color: black;
+    background-color: #071739;
+    color: #A4B5C4;
 }
 
 .btn_pausar {
@@ -91,7 +92,7 @@ body {
 
 .btn_retomar {
     padding: 16px 25px;
-    background-color: #064469;
+    background-color: #071739;
     border-radius: 5px;
     border: none;
     margin-left: 5px;
@@ -112,12 +113,12 @@ body {
 
 .pomodoro h1 {
     font-size: 80px;
-    color: #072D44;
+    color: #071739;
 }
 
 .lista_tarefas h2 {
     font-size: 40px;
-    color: #072D44;
+    color: #071739;
 }
 
 .div_adicionar_tarefa {
@@ -132,13 +133,13 @@ body {
 .lista_tarefas input {
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid #5790AB;
+    border-bottom: 2px solid #071739;
     width: 68%;
 }
 
 .lista_tarefas img {
     cursor: pointer;
-    color: #064469;
+    color: #071739;
 }
 
 .lista_tarefas #lista {
@@ -157,6 +158,7 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-top: 15px;
+    color: black;
     
 }
 

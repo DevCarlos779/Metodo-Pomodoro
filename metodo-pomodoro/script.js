@@ -21,6 +21,9 @@ let cronometrando = false;
 let time_quando_pausou = null;
 
 
+const alarme = new Audio("alarme.mp3");
+alarme.loop = -1;
+
 
 let lista_tarefas = []; //Array que contem todas as tarefas, Começa Vazio!
 
@@ -86,6 +89,8 @@ btn_pomodoro.addEventListener("click", (evt) => {
 
     // btn_comecar.innerHTML = "Começar";
     // btn_comecar.style.backgroundColor = "#5790AB";
+    alarme.pause();
+    alarme.currentTime = 0;
     cronometrando = false;
     ConfigBtnPausar();
     pode_cronometrar = false;
@@ -105,6 +110,8 @@ btn_pausa_curta.addEventListener("click", (evt) => {
 
     // btn_comecar.innerHTML = "Começar";
     // btn_comecar.style.backgroundColor = "#5790AB";
+    alarme.pause();
+    alarme.currentTime = 0;
     cronometrando = false;
     ConfigBtnPausar();
     pode_cronometrar = false;
@@ -122,6 +129,8 @@ btn_pausa_longa.addEventListener("click", (evt) => {
 
     // btn_comecar.innerHTML = "Começar";
     // btn_comecar.style.backgroundColor = "#5790AB";
+    alarme.pause();
+    alarme.currentTime = 0;
     cronometrando = false;
     ConfigBtnPausar();
     pode_cronometrar = false;
@@ -137,7 +146,6 @@ btn_pausa_longa.addEventListener("click", (evt) => {
 
 //Evento que começa a contagem do tempo quando clica no botão começar
 btn_comecar.addEventListener("click", (evt) => {
-    
 
     pode_cronometrar = true
     time_Inicial = Date.now();
@@ -184,6 +192,8 @@ btn_comecar.addEventListener("click", (evt) => {
                 btn_retomar.classList.remove("btn_retomar");
                 btn_retomar.setAttribute("class", "btn_oculto");
                 btn_retomar.innerHTML = "";
+
+                alarme.play();
                 
             }
 
@@ -251,6 +261,8 @@ btn_comecar.addEventListener("click", (evt) => {
         
         pode_cronometrar = false;
         cronometrando = false;
+        alarme.pause();
+        alarme.currentTime = 0;
 
         
         time_Inicial = Date.now();
